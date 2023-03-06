@@ -23,7 +23,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: laravel_db
+      MYSQL_DATABASE: laravel
       MYSQL_USER: laravel
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: secret
@@ -35,10 +35,22 @@ services:
       context: .
       dockerfile: nginx.dockerfile
     container_name: nginx
+    depends_on:
+      - php
+      - mysql
     ports:
       - '80:80'
       - '443:443'
     volumes:
       - ./src:/var/www/html
+    networks:
+      - laravel-app
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
     networks:
       - laravel-app
