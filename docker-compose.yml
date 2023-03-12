@@ -67,6 +67,18 @@ services:
     volumes:
       - ./src:/var/www/html
 
+  phpunit:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    container_name: artisan
+    working_dir: /var/www/html
+    entrypoint: [ "/var/www/html/vendor/bin/phpunit" ]
+    networks:
+      - laravel-app
+    volumes:
+      - ./src:/var/www/html
+
   npm:
     image: node:current-alpine
     container_name: npm
