@@ -7,3 +7,13 @@
 ```
     docker compose run --rm artisan --version
 ```
+
+## Run npm commands
+```
+    docker compose run --rm npm install
+```
+
+## Change folder owner
+```
+    sudo chown -R $USER src
+```
