@@ -42,7 +42,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html:delegated
     networks:
       - laravel-app
 
@@ -51,7 +51,7 @@ services:
     container_name: composer
     volumes:
       - ./src:/var/www/html
-    working_dir: /var/www/html
+    working_dir: /var/www/html:delegated
     networks:
       - laravel-app
 
@@ -71,7 +71,7 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
-    container_name: artisan
+    container_name: phpunit
     working_dir: /var/www/html
     entrypoint: [ "/var/www/html/vendor/bin/phpunit" ]
     networks:
@@ -88,3 +88,5 @@ services:
     entrypoint: ['npm']
     networks:
       - laravel-app
+    ports:
+      - '3000:3000'

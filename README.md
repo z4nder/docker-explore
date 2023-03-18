@@ -10,10 +10,15 @@
 
 ## Run npm commands
 ```
-    docker compose run --rm npm install
+    docker compose run --rm --service-ports npm run dev
 ```
 
 ## Change folder owner
 ```
     sudo chown -R $USER src
+```
+
+## Up nginx project
+```
+    docker compose up --build nginx
 ```
