@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function home()
+    {
+        $posts = Post::all();
+
+        return view('posts', [
+            'posts' => $posts
+        ]);
+    }
+
     public function index(){
         return Post::all();
     }
